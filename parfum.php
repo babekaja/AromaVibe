@@ -24,7 +24,7 @@ $images = json_decode($parfum['images'], true) ?: [];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.js" rel="stylesheet">
 
     <!-- Meta tags pour partage social -->
     <meta name="description" content="<?= htmlspecialchars($parfum['description']) ?>">
@@ -157,7 +157,9 @@ $images = json_decode($parfum['images'], true) ?: [];
             methods: {
                 contactWhatsApp() {
                     const phoneNumber = '+243999319517'; // Replace with your WhatsApp number
-                    const message = `Bonjour, je suis intéressé(e) par le parfum "${this.parfumData.nom}" (${this.parfumData.marque}) au prix de ${this.parfumData.prix}€. Est-il disponible ?`;
+                    // Get the current page URL
+                    const currentUrl = window.location.href;
+                    const message = `Bonjour, je suis intéressé(e) par le parfum "${this.parfumData.nom}" (${this.parfumData.marque}) au prix de ${this.parfumData.prix}€. Est-il disponible ? Lien du produit : ${currentUrl}`;
                     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                     window.open(whatsappUrl, '_blank');
                 },
